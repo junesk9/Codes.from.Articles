@@ -6,4 +6,4 @@ The in-house codes used in published scientific articles.
 June-Sik Kim et al. (in progress) Proc. Natl. Acad. Sci. USA  
 
 *200929.box.barplots.scatter.R 
-The R codes for drawing various plots in the manuscript. 
+*The R codes for drawing various plots in the manuscript. 
