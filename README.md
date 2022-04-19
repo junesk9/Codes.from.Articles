@@ -1,11 +1,8 @@
-# Codes.in.article
-The in-house codes used in published scientific articles.
-
-
+The in-house codes used in a published article.
 =================================================================
 
 "Arabidopsis TBP-ASSOCIATED FACTOR 12 ortholog NOBIRO6 controls root elongation with unfolded protein response cofactor activity."
-June-Sik Kim et al. (in progress) Proc. Natl. Acad. Sci. USA  
+June-Sik Kim et al. (2022) Proc. Natl. Acad. Sci. USA  PMID: 35115407
 
   *200929.box.barplots.scatter.R - R script for drawing various plots in the manuscript. 
 
