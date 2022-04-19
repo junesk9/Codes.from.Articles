@@ -3,6 +3,8 @@
 June-Sik Kim et al. (under review)  
   
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
+2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plot from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant GWAS.Results.csv files.  
+3. ***[211221.LDHeatmap.R](https://github.com/junesk9/In-house.codes.published/blob/main/211221.LDHeatmap.R)*** - R script to visualize the LD blocks with [LDHeatmap](https://sfustatgen.github.io/LDheatmap/).    
   
 
 ***  
@@ -11,8 +13,8 @@ June-Sik Kim et al. (2022) Proc. Natl. Acad. Sci. USA  PMID: [35115407](https://
 
 1. ***[200929.box.barplots.scatter.R](https://github.com/junesk9/In-house.codes.published/blob/main/200929.box.barplots.scatter.R)*** - R script for drawing various plots in the manuscript  
 2. ***[200208.AT.sleuth-DEG.R](https://github.com/junesk9/In-house.codes.published/blob/main/200208.AT.sleuth-DEG.R)***       - R script for DEG identifying using [Kallsito-Sleuth pipeline](https://www.nature.com/articles/nmeth.4324)  
-3. The raw and processed RNA-seq data is available via the NCBI GEO database [GSE163911](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163911)  
-4. The raw DNA-seq data is avaialbel via the NCBI SRA database [PRJNA687636](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA687636)  
+a. The raw and processed RNA-seq data is available via the NCBI GEO database [GSE163911](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163911)  
+b. The raw DNA-seq data is avaialbel via the NCBI SRA database [PRJNA687636](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA687636)  
 
 ***  
 
