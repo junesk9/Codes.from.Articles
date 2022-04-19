@@ -1,5 +1,8 @@
 =================================================================  
-
+### "Genome-wide association of ten agronomic traits in a barley diversity panel"  
+June-Sik Kim et al. (under review)  
+  
+  
 
 =================================================================  
 ### "Arabidopsis TBP-ASSOCIATED FACTOR 12 ortholog NOBIRO6 controls root elongation with unfolded protein response cofactor activity."
