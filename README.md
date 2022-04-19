@@ -2,6 +2,7 @@
 ### "Genome-wide association of ten agronomic traits in a barley diversity panel"  
 June-Sik Kim et al. (under review)  
   
+1. ***211020.pheno-plots.R*** – R script for drawing various phenotype plots  
   
 
 ***  
