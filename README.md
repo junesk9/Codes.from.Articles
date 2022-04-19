@@ -4,7 +4,9 @@ June-Sik Kim et al. (under review)
   
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
 2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plot from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant GWAS.Results.csv files.  
-3. ***[211221.LDHeatmap.R](https://github.com/junesk9/In-house.codes.published/blob/main/211221.LDHeatmap.R)*** - R script to visualize the LD blocks with [LDHeatmap](https://sfustatgen.github.io/LDheatmap/).    
+3. ***[211221.LDHeatmap.R](https://github.com/junesk9/In-house.codes.published/blob/main/211221.LDHeatmap.R)*** - R script to visualize the LD blocks with [LDHeatmap](https://sfustatgen.github.io/LDheatmap/).  
+4. ***[Density_plot.v2.R](https://github.com/junesk9/In-house.codes.published/blob/main/Density_plot.v2.R)*** - R script to drawing transparent density plots.  
+a. The raw Exome-seq sequence data was deposit to the NCBI SRA database [PRJNA825586](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA825586).  
   
 
 ***  
