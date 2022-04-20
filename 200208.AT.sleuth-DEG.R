@@ -1,7 +1,7 @@
 ##2020.02.07
 ## mRNA-seq C04, eer4-3, taf12
 ## KALLISTO-SlEUTH
-## by June-Sik Kim Feb. 8th, 2020
+## by June-Sik Kim (https://github.com/junesk9/)
 
 library(sleuth)
 s2c <- read.table("meta(pe).txt", header=TRUE, stringsAsFactors=FALSE)
