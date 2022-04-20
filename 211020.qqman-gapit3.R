@@ -1,9 +1,9 @@
 ##### Manhattan plot by qqman()
 ##### From output csv from GAPIT3
-##### 2021.10.20 Junesk9
+##### 2021.10.20 
+##### by June-Sik Kim (https://github.com/junesk9/)
 
 library(qqman)
-setwd("~/Library/CloudStorage/Box-Box/Per_080451_June-Sik Kim/16. Barley.SV274.GWAS/01_gwas.gapit3/Fig5_novel")
 
 ####Source Code editing
 #trace(manhattan, edit=TRUE)
