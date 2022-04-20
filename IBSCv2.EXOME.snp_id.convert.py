@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+Place Exome SNPs to the barley genes
+
+2021.04.10
+by June-Sik Kim (https://github.com/junesk9/)
+"""
 
 import sys
 import glob
