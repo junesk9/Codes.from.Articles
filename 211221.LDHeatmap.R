@@ -1,5 +1,6 @@
 ##### LDHeatmap 
-##### 2021.12.21 Junesk9
+##### 2021.12.21
+##### by June-Sik Kim (https://github.com/junesk9/)
 
 
 library(LDheatmap)
