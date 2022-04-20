@@ -1,5 +1,6 @@
-##2020.09.29
-##Both boxplot & barplot of the root measure data
+## 2020.09.29
+## Both boxplot & barplot of the root measure data
+## by June-Sik Kim (https://github.com/junesk9/)
 
 
 ########################################################
