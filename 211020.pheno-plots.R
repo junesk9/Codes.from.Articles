@@ -1,6 +1,7 @@
 ############ Various plot for Phenotype data
 ########### SV274 GWAS
-########### 2021.10.20 Juensk9
+########### 2021.10.20 
+########### by June-Sik Kim (https://github.com/junesk9/)
 
 ################# input data
 d <- read.table(pipe("pbpaste"), header=T)
