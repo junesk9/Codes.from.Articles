@@ -3,7 +3,7 @@
 June-Sik Kim et al. (under review)  
   
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
-2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plots from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant GWAS.Results.csv files.  
+2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plots from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant .GWAS.Results.csv files.  
 3. ***[211221.LDHeatmap.R](https://github.com/junesk9/In-house.codes.published/blob/main/211221.LDHeatmap.R)*** - R script to visualize LD blocks with [LDHeatmap](https://sfustatgen.github.io/LDheatmap/).  
 4. ***[Density_plot.v2.R](https://github.com/junesk9/In-house.codes.published/blob/main/Density_plot.v2.R)*** - R script to draw transparent density plots.  
 5. ***[IBSCv2.EXOME.snp_id.convert.py](https://github.com/junesk9/In-house.codes.published/blob/main/IBSCv2.EXOME.snp_id.convert.py)*** - Python3 script to identify the allocated gene locus for each barley SNP.  
