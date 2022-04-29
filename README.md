@@ -8,7 +8,7 @@ June-Sik Kim et al. (under review)
 4. ***[Density_plot.v2.R](https://github.com/junesk9/In-house.codes.published/blob/main/Density_plot.v2.R)*** - R script to draw transparent density plots.  
 5. ***[IBSCv2.EXOME.snp_id.convert.py](https://github.com/junesk9/In-house.codes.published/blob/main/IBSCv2.EXOME.snp_id.convert.py)*** - Python3 script to identify the allocated gene locus for each barley SNP.  
 a. The raw Exome-seq sequence data was deposit to the NCBI SRA database [PRJNA825586](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA825586).  
-b. The raw exome BeadChip data is available from [NBRP Barley database](http://earth.nig.ac.jp/~dclust/download/iSelect_50K_SV274_A2_DesignStrand.xlsx)   
+b. The raw exome BeadChip data is available from [NBRP Barley database](http://earth.nig.ac.jp/~dclust/download/iSelect_50K_SV274_A2_DesignStrand.xlsx).   
   
 
 ***  
