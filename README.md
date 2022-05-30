@@ -5,10 +5,11 @@ June-Sik Kim et al. (under review)
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
 2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plots from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant .GWAS.Results.csv files.  
 3. ***[211221.LDHeatmap.R](https://github.com/junesk9/In-house.codes.published/blob/main/211221.LDHeatmap.R)*** - R script to visualize LD blocks with [LDHeatmap](https://sfustatgen.github.io/LDheatmap/).  
-4. ***[Density_plot.v2.R](https://github.com/junesk9/In-house.codes.published/blob/main/Density_plot.v2.R)*** - R script to draw transparent density plots.  
+4. ***[Density_plot.v2.R](https://github.com/junesk9/In-house.codes.published/blob/main/Density_plot.v2.R)*** - R script to drow transparent density plots.  
 5. ***[IBSCv2.EXOME.snp_id.convert.py](https://github.com/junesk9/In-house.codes.published/blob/main/IBSCv2.EXOME.snp_id.convert.py)*** - Python3 script to identify the allocated gene locus for each barley SNP.  
-a. The raw Exome-seq sequence data was deposit to the NCBI SRA database [PRJNA825586](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA825586).  
-b. The raw exome BeadChip data is available from [NBRP Barley database](http://earth.nig.ac.jp/~dclust/download/iSelect_50K_SV274_A2_DesignStrand.xlsx).   
+a. The raw exome-seq sequence data was deposit to the NCBI SRA database [PRJNA825586](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA825586).  
+b. The raw exome BeadChip data is available from [NBRP Barley database](http://earth.nig.ac.jp/~dclust/download/iSelect_50K_SV274_A2_DesignStrand.xlsx).  
+c. The extracted exomic SNP dataset was deposit to the EVA database [PRJEB53039](https://www.ebi.ac.uk/ena/browser/view/PPRJEB53039).  
   
 
 ***  
