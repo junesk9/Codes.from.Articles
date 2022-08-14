@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 *Search and count CAMTA motives (A/C/G)CGCG(T/C/G)
-in the 1-kb upstream region for ech gene of Brachypodium genome
+in the 1-kb upstream region for each gene of Brachypodium genome
 
 *The output is a CSV table of relative position 
-of each motif start from the gene start (semicolon separated)
-and total count for each row and column.
+of each found motif from the gene start (semicolon separated)
+and total count for rows and columns.
 
 *The reference genome is adopt from Ensembl Plants DB.
 (https://plants.ensembl.org/index.html)
