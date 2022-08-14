@@ -1,3 +1,9 @@
+***
+### "Time-series transcriptome of Brachypodium distachyon during bacterial flagellin-induced pattern-triggered immunity"
+Tsubasa Ogasahara et al. (under review)
+
+1. ***[search.CAMTA-motif.220528.py]()***
+
 ***  
 ### "Genome-wide association of ten agronomic traits in a barley diversity panel"  
 June-Sik Kim et al. (under review)  
