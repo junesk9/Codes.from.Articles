@@ -2,7 +2,7 @@
 ### "Time-series transcriptome of Brachypodium distachyon during bacterial flagellin-induced pattern-triggered immunity"
 Tsubasa Ogasahara et al. (2022) Front. Plant Sci. [https://doi.org/10.3389/fpls.2022.1004184](https://doi.org/10.3389/fpls.2022.1004184)
 
-1. ***[search.prom_motif.220528.py](https://github.com/junesk9/In-house.codes.published/blob/main/search.prom_motif.220528.py)*** - Python3 script to search & count the CAMTA and other cis-elements in the 1-kb Brachypodium promoter regions.
+1. ***[search.prom_motif.220528.py](2022.ogasahara/search.prom_motif.220528.py)*** - Python3 script to search & count the CAMTA and other cis-elements in the 1-kb Brachypodium promoter regions.
 
 
 ***  
