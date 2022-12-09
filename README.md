@@ -6,8 +6,8 @@ Tsubasa Ogasahara et al. (2022) Front. Plant Sci. [https://doi.org/10.3389/fpls.
 
 
 ***  
-### "Genome-wide association of ten agronomic traits in a barley diversity panel"  
-June-Sik Kim et al. (under review)  
+### "Exome-wide variation in a diverse barley panel reveals genetic associations with ten agronomic traits in Eastern landraces"  
+June-Sik Kim et al. (accepted article)  
   
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
 2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plots from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant .GWAS.Results.csv files.  
