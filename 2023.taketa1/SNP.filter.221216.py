@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Find out uniq SNPs between 1-3 & 4-5
+Comparing VCFs then identify the category information of the SNP input.
+1,3 for SKY, 4-6 for SAC, J247 for Haruna Nijo
 
 2022.02.27 Junesk9
 """
