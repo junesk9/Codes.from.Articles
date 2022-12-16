@@ -74,7 +74,7 @@ for en,v in enumerate(vcf):
             diff_side = "J247"
 
         v[6] = diff_side  
-        if not v[0].startswith("HORVU.MOREX.r3"):
+        if not v[0].startswith("HORVU"):
             print(*v, sep="\t", file=out)
         else: pass
 out.close()
