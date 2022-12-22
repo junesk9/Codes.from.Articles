@@ -2,6 +2,9 @@
 ### "Metabolic and transcriptomic profiling during wheat seed development under progressive drought conditions"
 Ryosuke Mega et al. (under review)
 
+1. ***[wheat.mega.DEG-PW.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-PW.R)*** - R script to identify DEGs from pairwise comparisons
+2. ***[wheat.mega.DEG-TC.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-TC.R)*** - R script to indeify DEGs from whole timecourse comparison
+
 
 ***
 ### "Time-series transcriptome of Brachypodium distachyon during bacterial flagellin-induced pattern-triggered immunity"
