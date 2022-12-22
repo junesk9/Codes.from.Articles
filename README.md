@@ -5,7 +5,8 @@ Ryosuke Mega et al. (under review)
 1. ***[wheat.mega.DEG-PW.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-PW.R)*** - R script to identify DEGs from pairwise comparisons.
 2. ***[wheat.mega.DEG-TC.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-TC.R)*** - R script to indeify DEGs from the whole timecourse comparison.
 3. ***[wheat.mega.GO-KEGG.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.GO-KEGG.v2.R)*** - R script to identify GO/KEGG terms statistically accumulated in a given gene set.
-a. The raw and processed RNA-seq data are available via the NCBI GEO database GSEXXXXX
+
+a. The raw and processed RNA-seq data are available via the NCBI GEO database GEOXXXX
 
 ***
 ### "Time-series transcriptome of Brachypodium distachyon during bacterial flagellin-induced pattern-triggered immunity"
