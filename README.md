@@ -1,4 +1,9 @@
 ***
+### "Metabolic and transcriptomic profiling during wheat seed development under progressive drought conditions"
+Ryosuke Mega et al. (under review)
+
+
+***
 ### "Time-series transcriptome of Brachypodium distachyon during bacterial flagellin-induced pattern-triggered immunity"
 Tsubasa Ogasahara et al. (2022) Front. Plant Sci. PMID: [36186055](https://pubmed.ncbi.nlm.nih.gov/36186055/)  
 
