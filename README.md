@@ -15,7 +15,7 @@ Tsubasa Ogasahara et al. (2022) Front. Plant Sci. PMID: [36186055](https://pubme
 
 ***  
 ### "Exome-wide variation in a diverse barley panel reveals genetic associations with ten agronomic traits in Eastern landraces"  
-June-Sik Kim et al. (accepted article) J. Genet. Genom.  PMID: [36566016](https://pubmed.ncbi.nlm.nih.gov/36566016/) 
+June-Sik Kim et al. (2023) J. Genet. Genom.  PMID: [36566016](https://pubmed.ncbi.nlm.nih.gov/36566016/) 
   
 1. ***[211020.pheno-plots.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.pheno-plots.R)*** – R script for drawing various phenotype plots  
 2. ***[211020.qqman-gapit3.R](https://github.com/junesk9/In-house.codes.published/blob/main/211020.qqman-gapit3.R)*** - R script for Manhattan plots from the [GAPIT3](https://github.com/jiabowang/GAPIT3) resultant .GWAS.Results.csv files.  
