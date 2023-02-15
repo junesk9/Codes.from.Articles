@@ -24,7 +24,7 @@ June-Sik Kim et al. (2023) J. Genet. Genom.  PMID: [36566016](https://pubmed.ncb
 5. ***[IBSCv2.EXOME.snp_id.convert.py](https://github.com/junesk9/In-house.codes.published/blob/main/IBSCv2.EXOME.snp_id.convert.py)*** - Python3 script to identify the allocated gene locus for each barley SNP.  
 a. The raw exome-seq sequence data was deposit to the NCBI SRA database [PRJNA825586](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA825586).  
 b. The raw exome BeadChip data is available from [NBRP Barley database](http://earth.nig.ac.jp/~dclust/download/iSelect_50K_SV274_A2_DesignStrand.xlsx).  
-c. The extracted exomic SNP dataset was deposit to the EVA database [PRJEB53039](https://www.ebi.ac.uk/ena/browser/view/PPRJEB53039).  
+c. The extracted exomic SNP dataset was deposit to the EVA database [PRJEB53039](https://www.ebi.ac.uk/ena/browser/view/PRJEB53039).  
   
 
 ***  
