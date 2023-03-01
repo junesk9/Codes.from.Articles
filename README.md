@@ -1,4 +1,10 @@
 ***
+### "A metabolome genome-wide association study identified histidine N-pi-methyltransferase in Arabidopsis thaliana"
+Kai Uchida et al. (in prep)
+
+1. 
+
+***
 ### "Metabolic and transcriptomic profiling during wheat seed development under progressive drought conditions"
 Ryosuke Mega et al. (under review)
 
