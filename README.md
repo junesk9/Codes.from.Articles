@@ -2,7 +2,8 @@
 ### "A metabolome genome-wide association study identified histidine N-pi-methyltransferase in Arabidopsis thaliana"
 Kai Uchida et al. (in prep)
 
-1. 
+1. ***[220805.eluteGT.generateHMP.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.Uchida1/220805.eluteGT.generateHMP.py)*** - Python3 script to build the cutom SNP DB as a HapMap format to feed [GAPIT3](https://github.com/jiabowang/GAPIT3) run.
+a. The original 250k array-based Arabidopsis SNP dataset is available as [call_method_75.tar.gz](https://github.com/Gregor-Mendel-Institute/atpolydb/blob/master/250k_snp_data/call_method_75.tar.gz).
 
 ***
 ### "Metabolic and transcriptomic profiling during wheat seed development under progressive drought conditions"
