@@ -1,4 +1,10 @@
 ***
+### "Genomic signatures of Japanese malting barley breeding reflected in two modern high-quality cultivars, ‘Sukai Golden’ and ‘Sachiho Golden’"
+Shin Takeda et al. (under review)
+
+
+
+***
 ### "A metabolome genome-wide association study identified histidine N-pi-methyltransferase in ***Arabidopsis thaliana***"
 Kai Uchida et al. (accepted) Front. Plant Sci.
 
