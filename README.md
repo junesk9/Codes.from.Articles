@@ -9,8 +9,8 @@ a. The NGS data is deposit to DDBJ DRA database [PRJDB14939](https://www.ebi.ac.
 
 ***
 ### "A metabolome genome-wide association study identified histidine N-pi-methyltransferase in ***Arabidopsis thaliana***"
-Kai Uchida et al. (accepted) Front. Plant Sci.
-
+Kai Uchida et al. (2023) Front. Plant Sci. [https://doi.org/10.3389/fpls.2023.1201129](https://doi.org/10.3389/fpls.2023.1201129)
+ 
 1. ***[220805.eluteGT.generateHMP.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.Uchida1/220805.eluteGT.generateHMP.py)*** - Python3 script to build the cutom SNP DB as a HapMap format to feed [GAPIT3](https://github.com/jiabowang/GAPIT3) run.  
 a. The original 250k array-based Arabidopsis SNP dataset is available as [call_method_75.tar.gz](https://github.com/Gregor-Mendel-Institute/atpolydb/blob/master/250k_snp_data/call_method_75.tar.gz).
 2. ***[nazuna-metabolite.GAPIT3.v2.mar23.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.Uchida1/nazuna-metabolite.GAPIT3.v2.mar23.R)*** - R script to conduct [GAPIT3](https://github.com/jiabowang/GAPIT3)-aided GWAS and followed visualization.
