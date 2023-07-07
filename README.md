@@ -1,4 +1,10 @@
 ***
+### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
+Toshihisa Nomura et al. (under review)
+
+
+
+***
 ### "Genomic signatures of Japanese malting barley breeding reflected in two modern high-quality cultivars, ‘Sukai Golden’ and ‘Sachiho Golden’"
 Shin Taketa et al. (under review)
 
@@ -9,7 +15,7 @@ a. The NGS data is deposit to DDBJ DRA database [PRJDB14939](https://www.ebi.ac.
 
 ***
 ### "A metabolome genome-wide association study identified histidine N-pi-methyltransferase in ***Arabidopsis thaliana***"
-Kai Uchida et al. (2023) Front. Plant Sci. [https://doi.org/10.3389/fpls.2023.1201129](https://doi.org/10.3389/fpls.2023.1201129)
+Kai Uchida et al. (2023) Front. Plant Sci. PMID: [37360714](https://pubmed.ncbi.nlm.nih.gov/37360714/) 
  
 1. ***[220805.eluteGT.generateHMP.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.Uchida1/220805.eluteGT.generateHMP.py)*** - Python3 script to build the cutom SNP DB as a HapMap format to feed [GAPIT3](https://github.com/jiabowang/GAPIT3) run.  
 a. The original 250k array-based Arabidopsis SNP dataset is available as [call_method_75.tar.gz](https://github.com/Gregor-Mendel-Institute/atpolydb/blob/master/250k_snp_data/call_method_75.tar.gz).
