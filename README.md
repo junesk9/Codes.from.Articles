@@ -2,7 +2,7 @@
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
 Toshihisa Nomura et al. (under review)
 
-1. ***[z_AmpSeq-count.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura1/z_AmpSeq-count.py)*** - Python3 script to post-process the [CRISSPresso2 v2.2.7](https://github.com/pinellolab/CRISPResso2) to count DNA sequence matching cases against given doner DNAs.
+1. ***[z_AmpSeq-count.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura1/z_AmpSeq-count.py)*** - Python3 script to post-process the [CRISSPresso2 v2.2.7](https://github.com/pinellolab/CRISPResso2) outputs to count DNA sequence matching cases against given doner DNAs.
 
 
 ***
