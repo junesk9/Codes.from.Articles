@@ -1,4 +1,4 @@
-### Here is a deposit of in-house programming codes applied in published(ing) researched I commited.
+### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.
 
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
@@ -9,7 +9,7 @@ Toshihisa Nomura et al. (under review)
 
 ***
 ### "Genomic signatures of Japanese malting barley breeding reflected in two modern high-quality cultivars, ‘Sukai Golden’ and ‘Sachiho Golden’"
-Shin Taketa et al. (under review)
+Shin Taketa et al. (accepted) Breed Sci.
 
 1. ***[PLINK-snp_annotator.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/PLINK-snp_annotator.221216.py)*** - Python3 script to analyze the SNP effect to Barley coding genes.
 2. ***[SNP.categorizer.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/SNP.categorizer.221216.py)*** - Python3 script to sort the SNPs by occurance in related accessions, Haruna Nijo, Sukai Golden, and Sachiho Golden.
