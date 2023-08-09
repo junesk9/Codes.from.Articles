@@ -12,7 +12,7 @@ Toshihisa Nomura et al. (under review)
 Shin Taketa et al. (accepted) Breed. Sci.
 
 1. ***[PLINK-snp_annotator.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/PLINK-snp_annotator.221216.py)*** - Python3 script to analyze the SNP effect to Barley coding genes.
-2. ***[SNP.categorizer.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/SNP.categorizer.221216.py)*** - Python3 script to sort the SNPs by occurance in related accessions, Haruna Nijo, Sukai Golden, and Sachiho Golden.
+2. ***[SNP.categorizer.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/SNP.categorizer.221216.py)*** - Python3 script to sort the SNPs by their occurance in related accessions, Haruna Nijo, Sukai Golden, and Sachiho Golden.
 3. ***[star-rsem-deseq.221216.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/star-rsem-deseq.221216.R)*** - R script to load the [STAR](https://github.com/alexdobin/STAR) outputs and to evaluate the differentially expressed genes by using [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html).    
 a. The NGS data is deposit to DDBJ DRA database [PRJDB14939](https://www.ebi.ac.uk/ena/browser/view/PRJDB14939).
 
