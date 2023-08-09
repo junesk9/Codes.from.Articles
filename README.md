@@ -1,4 +1,4 @@
-### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.
+### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.       
 
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
