@@ -28,7 +28,7 @@ a. The original 250k array-based Arabidopsis SNP dataset is available as [call_m
 
 ***
 ### "Metabolic and transcriptomic profiling during wheat seed development under progressive drought conditions"
-Ryosuke Mega et al. (under review)
+Ryosuke Mega et al. (accepted) Sci. Rep.
 
 1. ***[wheat.mega.DEG-PW.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-PW.R)*** - R script to identify DEGs from pairwise comparisons.
 2. ***[wheat.mega.DEG-TC.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2022.mega/wheat.mega.DEG-TC.R)*** - R script to indeify DEGs from the whole timecourse comparison.
