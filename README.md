@@ -9,7 +9,7 @@ Toshihisa Nomura et al. (under review)
 
 ***
 ### "Genomic signatures of Japanese malting barley breeding reflected in two modern high-quality cultivars, ‘Sukai Golden’ and ‘Sachiho Golden’"
-Shin Taketa et al. (***[in press](https://doi.org/10.1270/jsbbs.23031)) Breed. Sci.
+Shin Taketa et al. ([in press](https://doi.org/10.1270/jsbbs.23031)) Breed. Sci.
 
 1. ***[PLINK-snp_annotator.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/PLINK-snp_annotator.221216.py)*** - Python3 script to analyze the SNP effect to Barley coding genes.
 2. ***[SNP.categorizer.221216.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.taketa1/SNP.categorizer.221216.py)*** - Python3 script to sort the SNPs by their occurance in related accessions, Haruna Nijo, Sukai Golden, and Sachiho Golden.
