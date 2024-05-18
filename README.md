@@ -1,5 +1,12 @@
 ### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.           
 
+
+***
+### "A working paper for callus multi-omics"
+XXX et al.
+
+1. ***[R-codes.Figure.Prep.v1.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v1.R)*** - R script of detailed procedures for data preparation and plot drawing.
+
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
 Toshihisa Nomura et al. (2024) Microb.Biotechnol. PMID: [38332568](https://pubmed.ncbi.nlm.nih.gov/38332568/)
