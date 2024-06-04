@@ -2,10 +2,10 @@
 
 
 ***
-### "A working paper for callus multi-omics"
+### "Multomics-based assessment of the impact of airflow on diverse plant callus cultures"
 XXX et al.
 
-1. ***[R-codes.Figure.Prep.v1.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v1.R)*** - R script of detailed procedures for data preparation and plot drawing.
+1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script data processing and visualization.
 
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
