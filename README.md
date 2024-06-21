@@ -2,10 +2,10 @@
 
 
 ***
-### "Multomics-based assessment of the impact of airflow on diverse plant callus cultures"
-XXX et al.
+### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
+June-Sik Kim et al.
 
-1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script for RNA-seq data processing and visualization.
+1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script for RNA-seq/metabolome data processing and Figure preparation.
 
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
