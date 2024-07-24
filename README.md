@@ -3,7 +3,7 @@
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
-June-Sik Kim et al. (in prep.)
+June-Sik Kim et al. (2024) BioRxiv: https://doi.org/10.1101/2024.07.17.604000
 
 1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script for RNA-seq/metabolome data processing and Figure preparation.
 
