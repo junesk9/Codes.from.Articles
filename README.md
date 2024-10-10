@@ -1,9 +1,14 @@
 ### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.           
 
+***
+### "HvFUL accelerates barley seasonal transition in winter field"
+June-Sik Kim et al. (in prep.)
+
+1. ***[seurat.barley-field.leaf.v2a.R(https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)]*** - R script for Seurat analysis of the field barley data.
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
-June-Sik Kim et al. (under review) Preprint: https://doi.org/10.1101/2024.07.17.604000
+June-Sik Kim et al. (in prep.) Preprint: https://doi.org/10.1101/2024.07.17.604000
 
 1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script for RNA-seq/metabolome data processing and Figure preparation.
 
