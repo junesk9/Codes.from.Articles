@@ -4,7 +4,7 @@
 ### "HvFUL accelerates barley seasonal transition in winter field"
 June-Sik Kim et al. (in prep.)
 
-1. ***[seurat.barley-field.leaf.v2a.R(https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)]*** - R script for Seurat analysis of the field barley data.
+1. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
