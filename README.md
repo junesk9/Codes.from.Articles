@@ -1,10 +1,11 @@
 ### Here is a deposit of in-house programming codes applied in published(ing) researches that I commited.           
 
 ***
-### "HvFUL accelerates barley seasonal transition in winter field"
+### "HvFUL accelerates the seasonal transition of field-grown barley in the winter"
 June-Sik Kim et al. (in prep.)
 
-1. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
+1. 
+Z. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
