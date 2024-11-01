@@ -4,7 +4,7 @@
 ### "HvFUL accelerates the seasonal transition of field-grown barley in the winter"
 June-Sik Kim et al. (in prep.)
 
-1. ***[Barley-Field.Fig01.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.Rmd)*** - R markdown document for Figure preparation (Part 1)
+1. ***[Barley-Field.Fig01.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.Rmd)*** - R markdown document for Figure preparation (Part 1) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.html)
 2. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
 
 ***
