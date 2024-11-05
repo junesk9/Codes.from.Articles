@@ -1,0 +1,161 @@
+---
+title: "[Barley field transcriptome] Main Figure 2 and supplements (1/2)"
+author: "JS KIM"
+date: "2024-11-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Overview
+
+R scripts to process the barley field transcriptome data and visualize them via Seurat. The raw and processed transcriptome data are available from NCBI GEO with a specific accession [GSE226906](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226906 "Accession display").
+
+```{r libraries}
+library(Seurat) #ver.4.4.0
+library(slingshot)
+library(CytoTRACE)
+
+#others
+set.seed(101)
+`%notin%` <- Negate(`%in%`) #temp. function to "not-in"
+
+#emulate the ggplot hue() color palette
+ggcolor <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+require(scales)
+show_col(ggcolor(8)) #test ggcolor
+
+#Load the seurat object so far
+so <- readRDS("seurat.barley-field.leaf.v3.rds")
+meta <- so@meta.data
+so
+```
+
+## CytoTRACE, Clustering, Slingshot
+
+```{r cluster}
+#(CytoTRACE)
+results <- CytoTRACE(as.matrix(so@assays$RNA@counts), ncores = 6, subsamplesize = 1000)
+so$CytoTRACE <- 1 - results$CytoTRACE
+
+#(Clustering)
+pcs <- c(1,  3, 14, 17, 18, 20, 40)
+so <- FindNeighbors(so, dims=pcs)
+so <- FindClusters(so, resolution=0.45)
+so$seurat_clusters <- so$RNA_snn_res.0.45
+#(manually rename the clusters from left to right)
+levels(so$seurat_clusters) <- c(7,2,4,6,1,3,5) 
+so$seurat_clusters <- factor(so$seurat_clusters, levels=sort(c(7,2,4,6,1,3,5)))
+
+#(Lineage and Slingshot)
+clus <- so$seurat_clusters
+umap <- so@reductions$umap@cell.embeddings
+colnames(umap) <- c("UMAP_1","UMAP_2")
+
+lineages <- getLineages(data=umap, clusterLabels=clus)
+curves <- getCurves(lineages, thresh = 0.01, stretch = 2, allow.breaks = TRUE, shrink = 0.99)
+SlingshotDataSet(curves)
+# class: SlingshotDataSet 
+# 
+#  Samples Dimensions
+#     1940          2
+# 
+# lineages: 1 
+# Lineage1: 1  2  3  4  5  6  7  
+# 
+# curves: 1 
+# Curve1: Length: 26.586	Samples: 1940
+
+pstime <-  slingPseudotime(curves)[rownames(so@meta.data),]
+pstime <- as.data.frame(pstime)
+pstime$clus <- so$seurat_clusters
+so@meta.data <- cbind(so@meta.data, pstime)
+#boxplot(so$Lineage1~so$seurat_clusters)
+#FeaturePlot(so, reduction="umap", features=c("Lineage1","Lineage0"))
+#ggplot(so@meta.data, aes(y = CytoTRACE, x = Lineage0, color = Accession))+ geom_point(alpha=0.8)+ theme_bw()
+
+LinMerge1 <- so@meta.data[so@meta.data$seurat_clusters %in% c(1,2,3,4), ]$Lineage1 - 5
+names(LinMerge1) <- rownames(so@meta.data[so@meta.data$seurat_clusters %in% c(1,2,3,4), ])
+LinMerge2 <- so@meta.data[so@meta.data$seurat_clusters %in% c(5,6,7),]$Lineage0
+names(LinMerge2) <- rownames(so@meta.data[so@meta.data$seurat_clusters %in% c(5,6,7), ])
+LineageM <- c(LinMerge1, LinMerge2)
+so@meta.data$LineageM <- LineageM[rownames(so@meta.data)]
+#boxplot(so$LineageM~so$seurat_clusters, main="Merged Psuedotime ~ clusters")
+
+meta <- so@meta.data
+```
+
+## Figure 2A
+```{r fig2A}
+plot(umap, col=ggcolor(7)[clus], cex=.5, pch = 16, xaxt='n', yaxt='n')
+for(l in levels(clus)){
+  sub.umap <- umap[clus==l, ]
+  sub.x = median(sub.umap[, 1])
+  sub.y = median(sub.umap[, 2])
+  sub.ci = paste0("C", l)
+  text(sub.ci, x = sub.x, y = sub.y, cex=1.3)
+}
+```
+
+## Figure 2B
+```{r fig2B}
+plot(umap, col=ggcolor(7)[clus],  cex=.5, pch = 16)
+lines(SlingshotDataSet(lineages), lwd = 3, col = 'red', show.constraints = TRUE)
+```
+
+## Figure 2C-2H
+```{r fig2C-2F}
+par(mfrow = c(2, 2))
+#(Figure 2C)
+boxplot(so$Lineage0~so$seurat_clusters, pch=19, cex=.5, notch=T)
+#(Figure 2D)
+boxplot(so$fD2H~so$seurat_clusters, pch=19, cex=.5, notch=T)
+#(Figure 2E)
+boxplot(so$DayHour~so$seurat_clusters, pch=19, cex=.5, notch=T)
+#(Figure 2F)
+boxplot(so$AvgTemp~so$seurat_clusters, pch=19, cex=.5, notch=T)
+
+#boxplot(so$LineageM~so$seurat_clusters, main="Merged Psuedotime ~ clusters")
+```
+
+## Figure 2G-2H
+```{r fig2G-2H}
+par(mfrow = c(1, 2))
+#(Figure 2G)
+key.palette <- hcl.colors(100, "Oslo")
+plot(umap, col=key.palette[round(so$CytoTRACE*100, 0)],  cex=.5, pch = 16)
+#(Figure 2H)
+boxplot(so$CytoTRACE~so$seurat_clusters, pch=19, cex=.5, notch=T)
+```
+
+## Figure S5
+```{r figS6}
+library(psych)
+pairs.panels(meta[,c("fD2H","CytoTRACE","AvgTemp","DayHour")])
+```
+
+## Figure 2I
+```{r fig2I}
+sub45 = subset(so@meta.data, so@meta.data$seurat_clusters %in% c(4,5))
+clus45 = clus[clus %in% c(4,5)]
+par(mfrow = c(1, 2))
+#(left)
+plot(sub45$CytoTRACE ~ sub45$AvgTemp, pch=19, cex=0.5, col=ggcolor(7)[clus45])
+lmfit = lm(sub45$CytoTRACE~sub45$AvgTemp + I(sub45$AvgTemp^2))
+lines(y=lmfit$fitted.values[order(lmfit$fitted.values)], x=sub45$AvgTemp[order(lmfit$fitted.values)], col=2, lwd=3)
+#(right)
+plot(sub45$CytoTRACE ~ sub45$DayHour, pch=19, cex=0.5, col=ggcolor(7)[clus45])
+lmfit = lm(sub45$CytoTRACE~sub45$DayHour + I(sub45$DayHour^2))
+lines(y=lmfit$fitted.values[order(lmfit$fitted.values)], x=sub45$DayHour[order(lmfit$fitted.values)], col=2, lwd=3)
+```
+
+
+## Session Info
+```{r sessioninfo}
+sessionInfo()
+```
