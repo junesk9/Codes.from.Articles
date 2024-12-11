@@ -2,11 +2,15 @@
 
 ***
 ### "HvFUL accelerates the seasonal transition of field-grown barley in the winter"
-June-Sik Kim et al. (in prep.)
+June-Sik Kim et al. (submitted)
 
 1. ***[Barley-Field.Fig01.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.Rmd)*** - R markdown document for Figure preparation (Part 1) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.html)
 2. ***[Barley-Field.Fig02A.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig02.Rmd)*** - R markdown document for Figure preparation (Part 2) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig02.html)
 3. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
+
+***
+### "The noncanonical splicing code in Euglena"
+T Nomura et al. (in prep.)
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
