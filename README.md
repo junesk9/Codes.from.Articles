@@ -20,9 +20,10 @@ T Nomura et al. (in prep.)
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
-June-Sik Kim et al. (submitted) Preprint: https://doi.org/10.1101/2024.07.17.604000
+June-Sik Kim et al. (under review) Preprint: https://doi.org/10.1101/2024.07.17.604000
 
 1. ***[R-codes.Figure.Prep.v2.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.Figure.Prep.v2.R)*** - R script for RNA-seq/metabolome data processing and Figure preparation.
+a. The raw multiomics data is available from NCBI SRA [PRJDB16707](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16707), [PRJDB16708](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16708), [PRJDB16709](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16709) and [PRJDB16736](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16736).  
 
 ***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
