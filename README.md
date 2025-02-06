@@ -26,6 +26,12 @@ June-Sik Kim et al. (2025) Sci.Data PMID: [39900939](https://www.nature.com/arti
 a. The raw and processed multiomics data are available from NCBI SRA:  [PRJDB16707](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16707), [PRJDB16708](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16708), [PRJDB16709](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16709) and [PRJDB16736](https://www.ncbi.nlm.nih.gov/bioproject/PRJDB16736).  
 
 ***
+### "Multi-omics signatures of diverse plant callus cultures"
+June-Sik Kim et al. (2024) Plant Biotechnol. [Article](https://www.jstage.jst.go.jp/article/plantbiotechnology/41/3/41_24.0719a/_article)
+
+1. ***[R-codes.PlantBiotech.Figure.Prep.v1.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2024Callus-ms.rna/R-codes.PlantBiotech.Figure.Prep.v1.R)*** - R script for figure preparstion.  
+
+***
 ### "High-efficiency genome editing by Cas12a ribonucleoprotein complex in ***Euglena gracilis***"
 Toshihisa Nomura et al. (2024) Microb.Biotechnol. PMID: [38332568](https://pubmed.ncbi.nlm.nih.gov/38332568/)
 
