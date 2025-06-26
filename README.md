@@ -2,22 +2,26 @@
 
 ***
 ### "HvFUL accelerates the seasonal transition of field-grown barley in the winter"
-June-Sik Kim et al. (submitted)
+June-Sik Kim et al. (under review)
 
 1. ***[Barley-Field.Fig01.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.Rmd)*** - R markdown document for Figure preparation (Part 1) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.html)
 2. ***[Barley-Field.Fig02A.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig02.Rmd)*** - R markdown document for Figure preparation (Part 2) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig02.html)
 3. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
 
 ***
-### "The noncanonical splicing code in Euglena"
-T Nomura et al. (in prep.)
+### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in Euglena"
+T Nomura et al. (under review)
 
 1. ***[1_check_splice_boundary1.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/1_check_splice_boundary1.pl)*** - Perl script to extract the intron information from inputs of the genome fasta and the GFF file.
 2. ***[2_check_splice_boundary2.2.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/2_check_splice_boundary2.2.pl)*** - Perl script to parse the #1 output and check the sequence integrity of the exon-intron boarder. STDOUT for next process.
 3. ***[3_check_splice_boundary3.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/3_check_splice_boundary3.pl)*** - Perl script to parse the #2 output. STDOUT for next process.
 4. ***[4_check_boundary_shift.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/4_check_boundary_shift.pl)*** - Perl script to analyze the #3 output to check the slidalbility of each exon-intron boarder. STDOUT for next process.
 5. ***[5_collect.nonSlidables.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/5_collect.nonSlidables.py)*** - Python3 script to collect the non-slidable introns from the #4 output.
-6. ***[6_count.NC-motif.py](https://github.com/junesk9/Codes.from.Articles/blob/main/NCIntron.2025/6_count.NC-motif.py)*** - Python3 script to count the introns by known intron patterns.  
+6. ***[6_count.NC-motif.py](https://github.com/junesk9/Codes.from.Articles/blob/main/NCIntron.2025/6_count.NC-motif.py)*** - Python3 script to count the introns by known intron patterns.
+
+***
+### "wheat single-cell analysis"
+
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
