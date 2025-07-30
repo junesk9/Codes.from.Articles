@@ -4,9 +4,27 @@
 import glob
 import sys
 
+subset = True
 
 fold_fi = sys.argv[-1]
 fold_fi = glob.glob("./%s/*.fold" % fold_fi)
+
+
+if subset == True:
+    sub_ls_f = "Both.intron.id.list"
+    sub_ls = [i.strip().split("\t")[0] for i in open(sub_ls_f)]
+    sub_ls = [".".join(i.split(".")[:3])+".fold" for i in sub_ls]
+
+    sub_fi = []
+    for fi in fold_fi:
+        f = fi.split("/")[-1]
+        if f in sub_ls:
+            sub_fi.append(fi)
+        else: pass
+    #print(len(sub_fi))
+    #print(sub_fi[:4])
+fold_fi = sub_fi if subset == True else fold_fi
+
 #print(fold_fi[:5])
 fold_dic = {}
 for fi in fold_fi:
