@@ -9,7 +9,7 @@ June-Sik Kim et al. (under review)
 3. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
 
 ***
-### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in Euglena"
+### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in ***Euglena***"
 T Nomura et al. (under review)
 
 1. ***[1_check_splice_boundary1.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/1_check_splice_boundary1.pl)*** - Perl script to extract the intron information from inputs of the genome fasta and the GFF file.
@@ -17,7 +17,12 @@ T Nomura et al. (under review)
 3. ***[3_check_splice_boundary3.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/3_check_splice_boundary3.pl)*** - Perl script to parse the #2 output. STDOUT for next process.
 4. ***[4_check_boundary_shift.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/4_check_boundary_shift.pl)*** - Perl script to analyze the #3 output to check the slidalbility of each exon-intron boarder. STDOUT for next process.
 5. ***[5_collect.nonSlidables.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/5_collect.nonSlidables.py)*** - Python3 script to collect the non-slidable introns from the #4 output.
-6. ***[6_count.NC-motif.py](https://github.com/junesk9/Codes.from.Articles/blob/main/NCIntron.2025/6_count.NC-motif.py)*** - Python3 script to count the introns by known intron patterns.
+6. ***[y2_Eag-intron.count.class.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/y2_Eag-intron.count.class.v3.py)*** - Python3 script to classify and to count the intron boundry motifs.
+7. ***[z2_extr.intron.fasta.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z2_extr.intron.fasta.v3.py)*** - Python3 script to extract the intron sequence as a multi-fasta file.
+8. ***[z6_intron.logo.table.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z6_intron.logo.table.v3.py)*** - Python3 script to generate intron boundry logos.
+9. ***[y5_parse.RNAfold-out.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/y5_parse.RNAfold-out.py)*** - Python3 script to count the mean folding availablity from the RNAfold output.
+    A. The associated supplementary data is available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)
+    B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1146561](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1146561)
 
 ***
 ### "wheat single-cell analysis"
