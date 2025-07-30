@@ -21,8 +21,8 @@ T Nomura et al. (under review)
 7. ***[z2_extr.intron.fasta.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z2_extr.intron.fasta.v3.py)*** - Python3 script to extract the intron sequence as a multi-fasta file.
 8. ***[z6_intron.logo.table.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z6_intron.logo.table.v3.py)*** - Python3 script to generate intron boundry logos.
 9. ***[y5_parse.RNAfold-out.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/y5_parse.RNAfold-out.py)*** - Python3 script to count the mean folding availablity from the RNAfold output.
-    A. The associated supplementary data is available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)
-    B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1146561](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1146561)
+A. The associated supplementary data is available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)  
+B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1146561](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1146561)  
 
 ***
 ### "wheat single-cell analysis"
