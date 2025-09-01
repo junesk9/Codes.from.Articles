@@ -10,7 +10,7 @@ June-Sik Kim et al. (under review)
 
 ***
 ### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in ***Euglena***"
-T Nomura et al. (under review)
+Toshihisa Nomura & June-Sik Kim et al. (in press)
 
 1. ***[1_check_splice_boundary1.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/1_check_splice_boundary1.pl)*** - Perl script to extract the intron information from inputs of the genome fasta and the GFF file.
 2. ***[2_check_splice_boundary2.2.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/2_check_splice_boundary2.2.pl)*** - Perl script to parse the #1 output and check the sequence integrity of the exon-intron boarder. STDOUT for next process.
@@ -22,7 +22,7 @@ T Nomura et al. (under review)
 8. ***[z6_intron.logo.table.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z6_intron.logo.table.v3.py)*** - Python3 script to generate intron boundry logos.
 9. ***[y5_parse.RNAfold-out.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/y5_parse.RNAfold-out.py)*** - Python3 script to count the mean folding availablity from the RNAfold output.  
 A. The associated supplementary data is available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)  
-B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1146561](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1146561)  
+B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1310665](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1310665) and [PRJDB4359](https://dataview.ncbi.nlm.nih.gov/object/PRJDB4359)  
 
 ***
 ### "wheat single-cell analysis"
