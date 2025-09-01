@@ -21,7 +21,7 @@ Toshihisa Nomura & June-Sik Kim et al. (in press)
 7. ***[z2_extr.intron.fasta.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z2_extr.intron.fasta.v3.py)*** - Python3 script to extract the intron sequence as a multi-fasta file.
 8. ***[z6_intron.logo.table.v3.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/z6_intron.logo.table.v3.py)*** - Python3 script to generate intron boundry logos.
 9. ***[y5_parse.RNAfold-out.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/y5_parse.RNAfold-out.py)*** - Python3 script to count the mean folding availablity from the RNAfold output.  
-A. The associated supplementary data is available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)  
+A. The associated supplementary data are available from a [FigShare data collection](https://doi.org/10.6084/m9.figshare.c.7576343)  
 B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA1310665](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA1310665) and [PRJDB4359](https://www.ncbi.nlm.nih.gov/sra/?term=PRJDB4359)   
 
 ***
