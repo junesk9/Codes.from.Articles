@@ -10,7 +10,7 @@ June-Sik Kim et al. (under review)
 
 ***
 ### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in ***Euglena***"
-Toshihisa Nomura & June-Sik Kim et al. (2025) Proc. Natl. Acad. Sci. USA [article](https://www.pnas.org/doi/10.1073/pnas.2509937122)
+Toshihisa Nomura & June-Sik Kim et al. (2025) Proc. Natl. Acad. Sci. USA [40986342](https://pubmed.ncbi.nlm.nih.gov/40986342/) [Article](https://www.pnas.org/doi/10.1073/pnas.2509937122) 
 
 1. ***[1_check_splice_boundary1.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/1_check_splice_boundary1.pl)*** - Perl script to extract the intron information from inputs of the genome fasta and the GFF file.
 2. ***[2_check_splice_boundary2.2.pl](https://github.com/junesk9/Codes.from.Articles/blob/main/2023nomura2/2_check_splice_boundary2.2.pl)*** - Perl script to parse the #1 output and check the sequence integrity of the exon-intron boarder. STDOUT for next process.
