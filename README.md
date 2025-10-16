@@ -6,8 +6,13 @@ June-Sik Kim et al. (under review)
 
 1. ***[Barley-Field.Fig01.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.Rmd)*** - R markdown document for Figure preparation (Part 1) [html](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig01.html)
 2. ***[Barley-Field.Fig02A.Rmd](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/Barley-Field.Fig02.Rmd)*** - R markdown document for Figure preparation (Part 2) 
-3. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data.
-4. ***[Hexamer-zscale-abundance.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/z_Hexamer-zscale-abundance.v5e.py)*** - Python3 script for Z-test of oligomer abundance in given DNA sequences.[SampleOutput](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/cl45markers.1000-0nt.promoter.6mer-0mis.435n.1000t.z-test.txt) 
+3. ***[seurat.barley-field.leaf.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.R)*** - R script for Seurat analysis of the field barley data 1/5. 
+4. ***[seurat.barley-field.leaf.v2a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v2a.R)*** - R script for Seurat analysis of the field barley data 2/5.
+5. ***[seurat.barley-field.leaf.v3.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v3.R)*** - R script for Seurat analysis of the field barley data 3/5.
+6. ***[seurat.barley-field.leaf.v3a.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v3a.R)*** - R script for Seurat analysis of the field barley data 4/5.
+7. ***[seurat.barley-field.leaf.v3b.R](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/seurat.barley-field.leaf.v3b.R)*** - R script for Seurat analysis of the field barley data 5/5.
+8. ***[Hexamer-zscale-abundance.py](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/z_Hexamer-zscale-abundance.v5e.py)*** - Python3 script for Z-test of oligomer abundance in given DNA sequences.[SampleOutput](https://github.com/junesk9/Codes.from.Articles/blob/main/2023.barley-field/cl45markers.1000-0nt.promoter.6mer-0mis.435n.1000t.z-test.txt) 
+A. The associated transcriptome/epigenome data are available from a NCBI GEO SuperSeries [GSE273147](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE273147) and [GSE226906](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226906)    
 
 ***
 ### "Genetic dissection of nonconventional introns reveals co-dominant noncanonical splicing code in ***Euglena***"
