@@ -33,6 +33,10 @@ B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA
 ***
 ### "wheat single-cell analysis"
 
+***
+### "wheat leaf RNA-seq with ABA treatments"
+Mega R et al. (in prep.)
+1. ***[Wheat-RNA-seq.R](2026mega1/wheat-Mega.2501.v1.R)*** - R script to conduct the RNA-seq data analysis for the study.
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
