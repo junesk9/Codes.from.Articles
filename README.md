@@ -34,8 +34,8 @@ B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA
 ### "wheat single-cell analysis"
 
 ***
-### "wheat leaf RNA-seq with ABA treatments"
-Mega R et al. (in prep.)
+### "A water-saving drought survival phenotype in a wheat TILLING mutant involves survival-biased metabolic and phosphorylation reprogramming"
+Ryosuke Mega et al. (in press) Plant. Cell. Environ.
 1. ***[Wheat-RNA-seq.R](2026mega1/wheat-Mega.2501.v1.R)*** - R script to conduct the RNA-seq data analysis for the study.
 
 ***
