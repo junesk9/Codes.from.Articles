@@ -35,8 +35,9 @@ B. The associated genome/transcriptome data are available from a NCBI SRA [PRJNA
 
 ***
 ### "A water-saving drought survival phenotype in a wheat TILLING mutant involves survival-biased metabolic and phosphorylation reprogramming"
-Ryosuke Mega et al. (in press) Plant. Cell. Environ.
+Ryosuke Mega et al. (2026) Plant. Cell. Environ. [42001397](https://doi.org/10.1111/pce.70546) [Article](https://doi.org/10.1111/pce.70546)
 1. ***[Wheat-RNA-seq.R](2026mega1/wheat-Mega.2501.v1.R)*** - R script to conduct the RNA-seq data analysis for the study.
+2. The raw and processed RNA-seq data are available from NCBI GEO: [GSE316071](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE316071)
 
 ***
 ### "Multiomics-based assessment of the impact of airflow on diverse plant callus cultures"
