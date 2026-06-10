@@ -1,0 +1,95 @@
+---
+title: "snRNA-seq analysis progress - 1; Tabeta et al."
+author: "JS KIM"
+date: "2024-12-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Overview
+Progress to analyze the single nucleus RNA-seq (snRNA-seq) of Arabidopsis 8-d-old cotyledons of two genotypes, wild-type and fugu5.
+In this page, two COPILOT datasets were merged into one Seurat object, with ALRA augmentation & CytoTRACE valuation.
+for compatibility with COPILOT, a legacy version Seurat (v4.4) is applied.
+```{r pkgs}
+### Libraries
+library(Seurat) #v4.4
+library(ALRA)
+library(CytoTRACE)
+
+library(ggplot2)
+library(pheatmap)
+
+### Some usuful presets
+ggcolor <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+`%notin%` <- Negate(`%in%`)
+
+setwd("~/Library/CloudStorage/Box-Box/シングルセル解析(多部田)")
+set.seed(101) #prevent the random output
+```
+
+## Merge two COPILOT datasets to one
+```{r merge}
+#(load two datasets)
+wt <- readRDS("./1_scKB-COPILOT/WT_8DAS/WT_8DAS_COPILOT.rds")
+fg5 <- readRDS("./1_scKB-COPILOT/fugu5_8DAS/fugu5_8DAS_COPILOT.rds")
+wt
+fg5
+
+#(merge)
+tbt1 <- merge(wt, y=fg5, add.cell.ids=c("WT","fugu5"), project="tbt_all")
+Idents(tbt1) <- tbt1$orig.ident
+tbt1
+
+#(check the data integrity)
+plot1 <- FeatureScatter(tbt1, feature1 = "nCount_RNA", feature2 = "percent.mt")
+plot2 <- FeatureScatter(tbt1, feature1 = "nCount_RNA", feature2 = "percent.cp")
+plot3 <- FeatureScatter(tbt1, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
+plot1 + plot2 + plot3
+# subset outliners
+tbt1 <- subset(tbt1, subset = percent.mt < 3 & percent.cp < 20 & nFeature_RNA < 3000)
+#(re-normalize the count data by SCTransform)
+tbt1 <- NormalizeData(tbt1, normalization.method = "LogNormalize", scale.factor = 10000)
+tbt1 <- SCTransform(tbt1, variable.features.n = nrow(tbt1), assay = "RNA", new.assay.name = "SCT", verbose = FALSE) 
+tbt1
+```
+
+## ALRA-augmentation & CytoTRACE
+```{r alra & ct}
+#(CytoTRACE)
+results <- CytoTRACE(as.matrix(tbt1@assays$RNA@counts), ncores = 6, subsamplesize = 1000)
+tbt1$CytoTRACE <- 1 - results$CytoTRACE
+
+#(ALRA-imputation)
+counts <- t(as.matrix(tbt1@assays$RNA@data)) #matrix where cells are rows and genes are columns
+c_norm <- normalize_data(counts)
+k_choice <- choose_k(c_norm) #38
+#(details visualization for k)
+require(gridExtra)
+df <- data.frame(x=1:100,y=k_choice$d)
+g1 <- ggplot(df,aes(x=x,y=y),) + geom_point(size=1)  + geom_line(size=0.5)+ geom_vline(xintercept=k_choice$k)   + theme( axis.title.x=element_blank() ) + scale_x_continuous(breaks=seq(10,100,10)) + ylab('s_i') + ggtitle('Singular values')
+df <- data.frame(x=2:100,y=diff(k_choice$d))[3:99,]
+g2 <- ggplot(df,aes(x=x,y=y),) + geom_point(size=1)  + geom_line(size=0.5)+ geom_vline(xintercept=k_choice$k+1)   + theme(axis.title.x=element_blank() ) + scale_x_continuous(breaks=seq(10,100,10)) + ylab('s_{i} - s_{i-1}') + ggtitle('Singular value spacings')
+grid.arrange(g1,g2,nrow=1)
+
+c_alra <- alra(c_norm, k=k_choice$k)[[3]]
+# Read matrix with 7960 cells and 26512 genes
+# Scaling all except for 2984 columns
+# 0.00% of the values became negative in the scaling process and were set to zero
+# The matrix went from 2.88% nonzero to 26.75% nonzero
+c_alra.t <- as(t(c_alra), "dgCMatrix") 
+colnames(c_alra.t) = rownames(counts)
+tbt1[["ALRA"]] <- CreateAssayObject(data=c_alra.t)
+```
+
+## Save the progress
+```{r save the progress}
+saveRDS(tbt1, "Tabeta-fugu5.seurat.rds")
+sessionInfo()
+```
+

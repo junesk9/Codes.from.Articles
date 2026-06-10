@@ -1,0 +1,134 @@
+---
+title: "snRNA-seq analysis progress - 3; Tabeta et al."
+author: "JS KIM"
+date: "2024-12-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Overview
+Progress to analyze the single nucleus RNA-seq (snRNA-seq) of Arabidopsis 8-d-old cotyledons of two genotypes, wild-type and fugu5.
+Start from the previous output "Tabeta-fugu5.seurat.v2.rds".
+
+```{r pkgs}
+### Libraries
+library(Seurat) #v4.4
+
+library(ggplot2)
+library(pheatmap)
+
+### Some usuful presets
+ggcolor <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+`%notin%` <- Negate(`%in%`)
+
+setwd("~/Library/CloudStorage/Box-Box/シングルセル解析(多部田)")
+set.seed(101) #prevent the random output
+```
+
+## Load the Seurat dataset
+Here to load the seurat dataset from merging two COPILOT sets.
+```{r call db}
+tbt1 <- readRDS("Tabeta-fugu5.seurat.v2.rds")
+tbt1 ##output the summary of db
+```
+
+## Correlation-based Celltype identification
+Here we attempt to identify cell-type based on a correlation to a previous report (Zhu et al. 2023; PMID: 37342910)
+```{r PCC-REF}
+#(load the ref RDS)
+ref <- readRDS("4_tissue.annotation/GSE213622_coaker_atpst_singlecell_sobj.rds")
+r.meta <- ref@meta.data #[1] 11895    38
+r.cnt <- ref@assays$SCT@data #[1] 19460 11895
+ref <- NULL #save memory
+
+#(Sample 1-k genes most diverse)
+r.df <- as.data.frame(r.cnt)
+r.df$rowVar = apply(r.df, 1, var)
+r.1k <- rownames(r.df[order(-r.df$rowVar),])[c(1:1000)]
+r.df <- NULL #save memory
+t.cnt <- tbt1@assays$SCT@data #[1] 21342  7960
+c.1k <- intersect(r.1k, rownames(t.cnt)) #[1] 993
+r.cnt <- r.cnt[c.1k, ] #[1]   993 11895
+t.cnt <- t.cnt[c.1k, ] #[1]  993 7960
+
+#(Reduce "mesophyll" cells to 500 for even cell-type diversity)
+table(r.meta$predicted.id)
+r.meso <- subset(r.meta, r.meta$predicted.id %in% "Mesophyll") 
+r.meso <- r.meso[order(-r.meso$prediction.score.Mesophyll), ] #[1] 10466    38
+meso500 <- rownames(r.meso)[1:500]
+others <- rownames(subset(r.meta, r.meta$predicted.id != "Mesophyll"))
+r.meta2 <- r.meta[rownames(r.meta) %in% c(others, meso500), ] #[1] 1929   38
+r.cnt <- r.cnt[, colnames(r.cnt) %in% rownames(r.meta2)]  #[1]  993 1929
+
+#(PCC)
+ct1 <- unique(r.meta$predicted.id)
+ct2 <- unique(r.meta$Phase)
+pcc.df <- as.data.frame(matrix(0, nrow=dim(t.cnt)[2], ncol=length(c(ct1, ct2))))
+rownames(pcc.df) <- colnames(t.cnt)
+colnames(pcc.df) <- c(ct1, ct2)
+for (t.idx in c(1:dim(pcc.df)[1])){
+  t.cell <- rownames(pcc.df)[t.idx]
+  t.exp = t.cnt[, t.cell]
+  for (r.cell in colnames(r.cnt)){
+    r.ct1 = r.meta[r.cell, "predicted.id"]
+    r.ct2 = r.meta[r.cell, "Phase"]
+    r.exp = r.cnt[, r.cell]
+    pcc <- cor.test(r.exp, t.exp, method="pearson")$estimate
+    
+    if(pcc.df[t.cell, r.ct1] < pcc){pcc.df[t.cell, r.ct1] <- pcc}
+    if(pcc.df[t.cell, r.ct2] < pcc){pcc.df[t.cell, r.ct2] <- pcc}
+  }
+  
+  if(t.idx %% 500 == 0){
+    ctime = format(Sys.time(), "%H:%M:%S")
+    ctime = paste0(ctime,": ", t.idx, "-round")
+    print(ctime)
+  }
+}
+write.csv(pcc.df, "4_tissue.annotation/pcc.df.ver2412.csv")
+
+#(PCC - max identity)
+#pcc.df <- read.csv("./4_tissue.annotation/pcc.df.ver240204.csv", row.names=1)
+pcc.df$Tissue <- apply(pcc.df[,c(1:8)], 1, function(x){colnames(pcc.df)[which(x == max(x))]})
+pcc.df$Phase <- apply(pcc.df[,c(9:11)], 1, function(x){colnames(pcc.df[,c(9:11)])[which(x == max(x))]})
+pcc.df$Tissue <- factor(pcc.df$Tissue, levels=unique(pcc.df$Tissue))
+pcc.df$Phase <- factor(pcc.df$Phase, levels=unique(pcc.df$Phase))
+#(Transfer to metadata)
+pcc.df <- pcc.df[rownames(tbt1@meta.data), ] #for assurance
+colnames(pcc.df)[1:11] <- sapply(colnames(pcc.df)[1:11], function(x){paste0(x,"_PCC")})
+tbt1$est.Tissue2 <- pcc.df$Tissue
+tbt1$est.Phase2 <- pcc.df$Phase
+for(col in colnames(pcc.df[,1:11])){tbt1@meta.data[,col] <- pcc.df[, col]}
+
+#(Polish the celltype by cluster-consensus)
+meta <- tbt1@meta.data
+meta$cons.Tissue <- NA
+cnt.df <- as.data.frame(matrix(0, nrow=length(levels(meta$seurat_clusters)), ncol=length(levels(meta$est.Tissue))))
+rownames(cnt.df) <- levels(meta$seurat_clusters)
+colnames(cnt.df) <- levels(meta$est.Tissue)
+for(cl in levels(tbt1$seurat_clusters)){
+  count = table(meta[meta$seurat_clusters %in% c(cl),"est.Tissue"])
+  cnt.df[cl, ] <- count
+  max.tissue = names(which(count == max(count)))
+  meta[meta$seurat_clusters %in% c(cl), ]$clean.Tissue <- max.tissue
+}
+write.csv(cnt.df,"est.Tissue.count.v24dec.csv")
+tbt1$cons.Tissue <- meta$cons.Tissue
+table(tbt1$cons.Tissue)
+
+p1 <- DimPlot(tbt1, reduction="umap_vst2k", group.by="cons.Tissue")
+p2 <- DimPlot(tbt1, reduction="tsne_vst2k", group.by="cons.Tissue")
+p1 + p2
+```
+
+## Save the progress
+```{r save the progress}
+saveRDS(tbt1, "Tabeta-fugu5.seurat.v3.rds")
+sessionInfo()
+```

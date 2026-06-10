@@ -1,0 +1,400 @@
+---
+title: "snRNA-seq analysis progress - 4; Tabeta et al."
+output: html_document
+date: "2024-12-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Overview
+
+Progress to analyze the single nucleus RNA-seq (snRNA-seq) of Arabidopsis 8-d-old cotyledons of two genotypes, wild-type and fugu5. Start from the previous output "Tabeta-fugu5.seurat.v3.rds".
+
+```{r pkgs}
+### Libraries
+library(Seurat) #v4.4
+
+library(MAST)
+library(ggplot2)
+library(pheatmap)
+library(enrichplot)
+library(tidyverse)
+
+library(org.At.tair.db) 
+library(clusterProfiler)
+library(KEGGREST)
+library(GSEABase)
+library(GOstats)
+library(pathview)
+
+### Some usuful presets
+ggcolor <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+`%notin%` <- Negate(`%in%`)
+
+setwd("~/Library/CloudStorage/Box-Box/シングルセル解析(多部田)")
+set.seed(101) #prevent the random output
+```
+
+## Load the Seurat dataset
+
+Here to load the seurat dataset from merging two COPILOT sets.
+
+```{r call db}
+tbt1 <- readRDS("Tabeta-fugu5.seurat.v3a.rds")
+meta <- tbt1@meta.data
+tbt1 ##output the summary of db
+```
+
+## Visualize Gene expression
+
+```{r plots}
+DefaultAssay(tbt1) <- "ALRA"
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=c("AT3G09260", "AT3G16400","AT3G44320"), ncol=3, cols=c("lightgrey", "magenta"))
+VlnPlot(tbt1, features=c("AT3G09260", "AT3G16400","AT3G44320"), group.by="cons.Tissue")
+DefaultAssay(tbt1) <- "SCT"
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=c("AT3G09260", "AT3G16400","AT3G44320"), ncol=3)
+VlnPlot(tbt1, features=c("AT3G09260", "AT3G16400","AT3G44320"), group.by="cons.Tissue")
+VlnPlot(tbt1, features=c("AT3G09260", "AT3G16400","AT3G44320"), group.by="cons.Tissue", split.by="orig.ident", split.plot = TRUE)
+
+DotPlot(sub1, features=c("AT5G57220", "AT3G09260","AT3G16400","AT3G44320"), group.by="SCT_snn_res.3_subE", col.min=-0.1, col.max=0.1, assay="ALRA", split.by="orig.ident") + RotatedAxis()
+```
+
+## Visualize the tissue estimation
+
+```{r plots}
+# head(ratio)
+#    perc_epi perc_meso
+# 1 1.2779553  9.584665
+# 2 1.6611296 83.388704
+# 3 0.6688963 96.321070
+# 4 1.0526316 81.052632
+# 5 0.7017544 24.210526
+# 6 0.3597122 97.122302
+t <- levels(tbt1$SCT_snn_res.5)
+t <- as.character(sort(as.numeric(t)))
+tbt1$SCT_snn_res.5 <- factor(tbt1$SCT_snn_res.5, levels=t)
+
+perc_epi = 100 - round(ratio[,1], 0)
+cols_epi = sapply(perc_epi, function(x){paste0("grey",as.character(x))})
+DimPlot(tbt1, reduction="tsne_vst2k", group.by="SCT_snn_res.5", cols=cols_epi) + NoLegend()
+
+perc_mes = 100 - round(ratio[,2], 0)
+cols_mes = sapply(perc_mes, function(x){paste0("grey",as.character(x))})
+DimPlot(tbt1, reduction="tsne_vst2k", group.by="SCT_snn_res.5", cols=cols_mes) + NoLegend()
+
+#epidermis first 2 from tpc.00751 last 2 from Berrio 2022 Plant Physiol
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=c("AT1G09310","AT1G68530","AT2G05520","AT3G51600"), ncol=4,cols=c("lightgrey","forestgreen"))
+#mesophyll as the same sources
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=c("AT1G29910","AT3G01500","AT5G38410","AT1G79040"), ncol=4, cols=c("lightgrey","darkblue"))
+```
+
+## Visualize subEpi clusters
+
+```{r subEpi}
+Idents(tbt1) <- tbt1$cons.Tissue
+meta <- tbt1@meta.data
+
+meta$SCT_snn_res.3_subE <- as.vector(meta$SCT_snn_res.3)
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %notin% c(7,18,14,21,8,27,4,22)] <- NA
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(18)] <-"e1"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(7)] <-"e2"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(8)] <-"e3"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(27)] <-"e4"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(14)] <-"e5"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(21)] <-"e6"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(22)] <-"e7"
+meta$SCT_snn_res.3_subE[meta$SCT_snn_res.3_subE %in% c(4)] <-"e8"
+tbt1@meta.data$SCT_snn_res.3_subE <- meta$SCT_snn_res.3_subE
+
+DimPlot(tbt1, reduction="tsne_vst2k", group.by="SCT_snn_res.3_subE", label=T)
+```
+
+## DEG-analysis with MAST
+
+```{r mast}
+DefaultAssay(tbt1) <- "SCT"
+Idents(tbt1) <- "cons.Tissue" #34 in total; 6 in epidermis
+tbt1@meta.data$orig.ident <- factor(tbt1@meta.data$orig.ident, levels=unique(tbt1@meta.data$orig.ident)) #set order WT -> fugu5
+
+deg.g <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", only.pos=FALSE, logfc.threshold = 0.1) #[1] 274   5
+deg.epi <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Epidermis", min.pct=0.1, logfc.threshold = 0.1) #[1] 413   5
+deg.bs <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Bundle.Sheath", min.pct=0.1, logfc.threshold = 0.1) #[1] 735   5
+deg.cc <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Companion.Cells", min.pct=0.1, logfc.threshold = 0.1) #[1] 399   5
+deg.gc <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Guard.Cell", min.pct=0.1, logfc.threshold = 0.1) #[1] 2567    5
+deg.mes <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Mesophyll", min.pct=0.1, logfc.threshold = 0.1) #[1] 303   5
+deg.pc <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=FALSE, subset.ident ="Procambium", min.pct=0.1, logfc.threshold = 0.1) #[1] 527   5
+
+deg.epi$gid <- rownames(deg.epi)
+deg.bs$gid <- rownames(deg.bs)
+deg.cc$gid <- rownames(deg.cc)
+deg.gc$gid <- rownames(deg.gc)
+deg.mes$gid <- rownames(deg.mes)
+deg.pc$gid <- rownames(deg.pc)
+
+deg.epi$Tissue <- "Epidermis"
+deg.bs$Tissue <- "Bundle.Sheath"
+deg.cc$Tissue <- "Companion.Cells"
+deg.gc$Tissue <- "Guard.Cell"
+deg.mes$Tissue <- "Mesophyll"
+deg.pc$Tissue <- "Procambium"
+
+deg.all <- rbind(deg.epi, deg.bs, deg.cc, deg.gc, deg.mes, deg.pc, make.row.names = FALSE) #[1] 4944    6
+write.csv(deg.all, "7_DEGs/DEG-FvsW.byTissue.csv")
+write.csv(deg.g, "7_DEGs/DEG-FvsW.global.csv")
+
+Idents(tbt1) <- "SCT_snn_res.3_subE"
+
+deg.e1 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e1", min.pct=0.1, logfc.threshold = 0.1) #[1] 352   5
+deg.e2 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e2", min.pct=0.1, logfc.threshold = 0.1) #[1] 328   5
+deg.e3 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e3", min.pct=0.1, logfc.threshold = 0.1) #[1] 328   5
+deg.e4 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e4", min.pct=0.1, logfc.threshold = 0.1) #[1] 685   5
+deg.e5 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e5", min.pct=0.1, logfc.threshold = 0.1) #[1] 326   5
+deg.e6 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e6", min.pct=0.1, logfc.threshold = 0.1) #[1] 326   5
+deg.e7 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e7", min.pct=0.1, logfc.threshold = 0.1) #[1] 523   5
+deg.e8 <- FindMarkers(tbt1, group.by="orig.ident", ident.1="fugu5_8DAS", test.use="MAST", 
+                        only.pos=TRUE, subset.ident ="e8", min.pct=0.1, logfc.threshold = 0.1) #[1] 168   5
+subE.markers <- FindAllMarkers(object=tbt1, only.pos=TRUE, min.pct=0.1, logfc.threshold = 0.1, test.use="MAST")
+
+deg.e1$gid <- rownames(deg.e1)
+deg.e2$gid <- rownames(deg.e2)
+deg.e4$gid <- rownames(deg.e4)
+deg.e5$gid <- rownames(deg.e5)
+deg.e7$gid <- rownames(deg.e7)
+deg.e8$gid <- rownames(deg.e8)
+
+deg.e1$Tissue <- "e1"
+deg.e2$Tissue <- "e2"
+deg.e4$Tissue <- "e4"
+deg.e5$Tissue <- "e5"
+deg.e7$Tissue <- "e7"
+deg.e8$Tissue <- "e8"
+
+deg.subE <- rbind(deg.e1, deg.e2, deg.e4, deg.e5, deg.e7,deg.e8, make.row.names = FALSE) #[1] 2382    7
+write.csv(deg.subE, "7_DEGs/DEG-FvsW.subEpi_clusters.MAST.csv", quote=F, row.names=F)
+write.csv(subE.markers, "7_DEGs/subEpi_clusters.markers.MAST.csv")
+```
+
+## Cluster GO/KEGG analysis (tissues)
+
+```{r clustercompare}
+DefaultAssay(tbt1) <- "SCT"
+Idents(tbt1) <- "cons.Tissue" #for assuring
+integrated.markers <- FindAllMarkers(object=tbt1, only.pos=TRUE, min.pct=0.1, logfc.threshold = 0.1, test.use="MAST")
+write.csv(integrated.markers,"./3_Marker-genes/consTissue.markers.MAST.csv")
+
+#integrated.markers <- read.csv("3_Marker-genes/consTissue.markers.MAST.csv", header=T, row.names=1)
+deg_list <- split(integrated.markers$gene, integrated.markers$cluster)
+names(deg_list) <- levels(Idents(tbt1)) 
+deg_list <- deg_list[order(names(deg_list))] #ordering the list elements
+tair_list <- deg_list #keep for further KEGG analysis
+for(i in names(deg_list)){
+  deg_list[[i]] <- bitr(deg_list[[i]],
+                        fromType="TAIR",
+                        toType="ENTREZID",
+                        OrgDb="org.At.tair.db",
+                        drop=TRUE) #drop for remove the unconverted gid, keep them with "NA" by "FALSE"
+  deg_list[[i]] <- deg_list[[i]]$ENTREZID 
+} #deg list including ENTREZID
+
+GOBP <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="BP", OrgDb = "org.At.tair.db")
+GOCC <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="CC", OrgDb = "org.At.tair.db")
+GOMF <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="MF", OrgDb = "org.At.tair.db")
+dotplot(GOBP, group=TRUE, showCategory = 3, label_format = 30, color="p.adjust")#Visualize by dot plot
+
+GOMFe <- pairwise_termsim(GOMF) #transform data for e(nrichment)map plot
+emapplot(GOMFe, showCategory = 10)
+```
+
+## Cluster GO/KEGG analysis (sub-epidermis)
+
+```{r clustercompare}
+DefaultAssay(tbt1) <- "SCT"
+Idents(tbt1) <- "SCT_snn_res.3" #34 in total; 6 in epidermis
+integrated.markers <- FindAllMarkers(object=tbt1, only.pos=TRUE, min.pct=0.1, logfc.threshold = 0.1, test.use="MAST")
+write.csv(integrated.markers,"./3_Marker-genes/clusters-34.markers.MAST.csv")
+
+#integrated.markers <- read.csv("./3_Marker-genes/clusters-34.markers.MAST.csv", header=T, row.names=1)
+deg_list <- split(integrated.markers$gene, integrated.markers$cluster)
+names(deg_list) <- levels(Idents(tbt1)) 
+deg_list <- deg_list[c("18","7","22")] #subset 3-clusters for epidermis
+names(deg_list) <- c("e1","e2","e7")
+tair_list <- deg_list #keep for further KEGG analysis
+for(i in names(deg_list)){
+  deg_list[[i]] <- bitr(deg_list[[i]],
+                        fromType="TAIR",
+                        toType="ENTREZID",
+                        OrgDb="org.At.tair.db",
+                        drop=TRUE) #drop for remove the unconverted gid, keep them with "NA" by "FALSE"
+  deg_list[[i]] <- deg_list[[i]]$ENTREZID 
+} #deg list including ENTREZID
+
+GOBP <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="BP", OrgDb = "org.At.tair.db", pvalueCutoff=1)
+GOCC <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="CC", OrgDb = "org.At.tair.db", pvalueCutoff=1)
+GOMF <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="MF", OrgDb = "org.At.tair.db", pvalueCutoff=1)
+dotplot(GOMF, group=TRUE, showCategory = 3, label_format = 30, color="p.adjust") #Visualize by dot plot
+treeplot(pairwise_termsim(GOBP), showCategory = 3, geneClusterPanel = "dotplot", color="pvalue")
+
+GOMFe <- pairwise_termsim(GOMF) #transform data for e(nrichment)map plot
+GOBPe <- pairwise_termsim(GOBP)
+GOCCe <- pairwise_termsim(GOCC)
+emapplot(GOMFe, showCategory = 15, nWords=4)
+
+KEGG <- compareCluster(geneClusters=tair_list, fun = "enrichKEGG", organism = "ath", pvalueCutoff=1)
+KEGG@compareClusterResult$Description <- sapply(KEGG@compareClusterResult$Description, function(x){strsplit(x, " - ")[[1]][1]}) #improved label readability
+KEGG2 <- pairwise_termsim(KEGG)
+
+dotplot(KEGG, group=TRUE,showCategory = 3, color="p.adjust", label_format = 30)
+emapplot(KEGG2, showCategory = 10)
+Kdf <- as.data.frame(KEGG@compareClusterResult)
+write.csv(Kdf,"./3_Marker-genes/clusters-34.markers.MAST.KEGG.csv", quote=TRUE, row.names=FALSE)
+```
+
+## Cluster GO/KEGG analysis (fugu5 by tissue)
+
+```{r degs}
+#deg.all <- read.csv("7_DEGs/DEG-FvsW.byTissue.csv", header=T, row.names=1)
+deg.up <- subset(deg.all, deg.all$avg_log2FC > 0.1) #fugu5 upregulated [1] 2101    7
+deg.dn <- subset(deg.all, deg.all$avg_log2FC < -0.1) #fugu5 downregulated [1] 2843    7
+
+deg_list <- split(deg.up$gid, deg.up$Tissue)
+tair_list <- deg_list #keep for further KEGG analysis
+for(i in names(deg_list)){
+  deg_list[[i]] <- bitr(deg_list[[i]],
+                        fromType="TAIR",
+                        toType="ENTREZID",
+                        OrgDb="org.At.tair.db",
+                        drop=TRUE) #drop for remove the unconverted gid, keep them with "NA" by "FALSE"
+  deg_list[[i]] <- deg_list[[i]]$ENTREZID 
+} #deg list including ENTREZID
+
+GOBP <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="BP", OrgDb = "org.At.tair.db")
+GOCC <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="CC", OrgDb = "org.At.tair.db")
+GOMF <- compareCluster(geneClusters=deg_list, fun="enrichGO", ont="MF", OrgDb = "org.At.tair.db")
+dotplot(GOMF, group=TRUE, showCategory = 5, label_format = 40) #Visualize by dot plot
+
+KEGG <- compareCluster(geneClusters=tair_list, fun = "enrichKEGG", organism = "ath", pvalueCutoff=1)
+KEGG@compareClusterResult$Description <- sapply(KEGG@compareClusterResult$Description, function(x){strsplit(x, " - ")[[1]][1]}) #improved label readability
+dotplot(KEGG, group=TRUE,showCategory = 5, label_format = 40, color="pvalue")
+
+BPdf <- as.data.frame(GOBP@compareClusterResult)
+CCdf <- as.data.frame(GOCC@compareClusterResult)
+MFdf <- as.data.frame(GOMF@compareClusterResult)
+Kdf <- as.data.frame(KEGG@compareClusterResult)
+write.csv(Kdf,"./7_DEGs/DEG-FvsW.byTissue.fugu5up-KEGG.csv", quote=TRUE, row.names=FALSE)
+write.csv(BPdf,"./7_DEGs/DEG-FvsW.byTissue.fugu5up-GOBP.csv", quote=TRUE, row.names=FALSE)
+write.csv(CCdf,"./7_DEGs/DEG-FvsW.byTissue.fugu5up-GOCC.csv", quote=TRUE, row.names=FALSE)
+write.csv(MFdf,"./7_DEGs/DEG-FvsW.byTissue.fugu5up-GOMF.csv", quote=TRUE, row.names=FALSE)
+
+
+```
+
+## Co-expression analysis
+
+```{r corr}
+exp <- as.matrix(tbt1@assays$ALRA@data) #[1] 21342  7960
+col1k <- sample(colnames(exp), 1000)
+exp.s <- exp[VariableFeatures(tbt1), col1k] #[1] 2000 1000
+exp.s <- na.omit(t(scale(t(exp.s))))
+meta <- tbt1@meta.data
+meta.s <- meta[col1k, ]
+
+key.palette <- rev(hcl.colors(100, "RdYlBu"))
+col.annt <- meta.s[,c("orig.ident","cons.Tissue")]
+ann.colors = list(cons.Tissue=setNames(ggcolor(7), sort(unique(meta$cons.Tissue))), orig.ident=c(WT_8DAS="#F8766D",fugu5_8DAS="#00bfc4"))
+row.lab <- data.frame(row.names=rownames(exp.s), goi=rownames(exp.s))
+row.lab$goi[!row.lab$goi %in% c("AT3G09260", "AT3G16400","AT5G57220")] <- ""
+
+p1 <- pheatmap(exp.s, show_rownames = TRUE, show_colnames = FALSE, color=key.palette,
+               cluster_cols = TRUE, cluster_rows = TRUE, breaks=seq(-2,4,length.out =101),
+               main = "1k-random x 2k-variables; native", cutree_rows = 20,
+               annotation_col=col.annt, labels_row = row.lab$goi,
+               annotation_colors = ann.colors)
+gorder <- p1$tree_row$order
+clus.attr <- cutree(p1$tree_row, k = 20) # goi were clustered #5; check by "clus.attr[c("AT3G09260", "AT3G16400")]"
+
+#(extract the cluster #5 genes; check the expression)
+g.ext <- names(clus.attr[clus.attr %in% c(5)]) #[1] 103
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=g.ext[1:12], ncol=4)
+
+#(re-draw the heatmap by given cluster #5 genes & labeling DEGs)
+exp.s5 <- exp.s[rownames(exp.s) %in% g.ext, ] #[1]  103 1000
+row.lab5 <- row.lab[rownames(row.lab) %in% rownames(exp.s5), , drop=FALSE]
+row.annt = data.frame(row.names=rownames(exp.s5), l2fc=rep(0, dim(row.lab5)[1]))
+for(r in rownames(row.annt)){if (r %in% row.names(degf5.e1)){if(degf5.e1[r,"avg_log2FC"] > 0){row.annt[r,"l2fc"] <- 1}else{row.annt[r,"l2fc"] <- -1}}}
+p2 <- pheatmap(exp.s5, show_rownames = TRUE, show_colnames = FALSE, color=key.palette,
+               cluster_cols = TRUE, cluster_rows = TRUE, breaks=seq(-2,4,length.out =101),
+               main = "1k-random x 2k-variables; Cls#5-goi",
+               annotation_col=col.annt, labels_row = row.lab5$goi,
+               annotation_colors = ann.colors)
+
+clus5.attr <- cutree(p2$tree_row, k = 6) # goi were clustered #2; check by "clus5.attr[c("AT3G09260", "AT3G16400")]"
+g.ext1 <- names(clus5.attr[clus5.attr %in% c(1)]) #[1] 31
+g.ext2 <- names(clus5.attr[clus5.attr %in% c(2)]) #[1] 60
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=g.ext1[1:12], ncol=4)
+FeaturePlot(tbt1, reduction="tsne_vst2k", features=g.ext2[1:12], ncol=4)
+```
+
+## GO/KEGG
+
+```{r go.kegg}
+gid.all <- unique(toTable(org.At.tairGO)$gene_id)
+gid.deg <- rownames(subset(degf5.e1, rownames(degf5.e1) %in% rownames(deg.e1) & degf5.e1$avg_log2FC>0)) #fugu5-up genes in epidermis1 n=41
+
+#(GO-BP,MF,CC)
+p.go <- new("GOHyperGParams",
+            geneIds=gid.deg,
+            universeGeneIds=gid.all,
+            annotation="org.At.tair.db",
+            ontology="MF",
+            pvalueCutoff=1,
+            conditional=FALSE,
+            testDirection="over")
+r.go <- hyperGTest(p.go)
+o.go <- summary(r.go)
+go.gid <- geneIdsByCategory(r.go)
+o.go$GeneID <- sapply(o.go[,1], function(x)paste(unlist(go.gid[x]), collapse="/"))
+#write.csv(o.go, "DEG-FvsW.epidermis1.GOMF.csv")
+
+#(KEGG)
+P.kegg <- new("KEGGHyperGParams",
+            geneIds=gid.deg,
+            universeGeneIds=gid.all,
+            annotation="org.At.tair.db",
+            pvalueCutoff=1,
+            testDirection="over")
+r.kegg <- hyperGTest(P.kegg)
+o.kegg <- summary(r.kegg)
+#(decorate the o.kegg output)
+kegg2tair <- keggList("pathway", "ath")
+name <- sapply(kegg2tair, function(x){strsplit(x, "- Arabidopsis", fixed=T)[[1]][1]})
+KEGG2NAME <- data.frame(name)
+rownames(o.kegg) <- sapply(o.kegg$KEGGID, function(x){paste0("ath",x)})
+o.kegg$Term <- KEGG2NAME[rownames(o.kegg),]
+gid.kegg <- geneIdsByCategory(r.kegg)
+o.kegg$GeneId <- sapply(o.kegg[,1], function(x)paste(unlist(gid.kegg[x]), collapse="/"))
+#write.csv(o.kegg, "DEG-FvsW.epidermis1.KEGG.csv")
+```
+
+## SessionInfo
+
+```{r si}
+sessionInfo()
+```
